@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 252;
+  --background-end-rgb: 255, 255, 255;
+  --font-nunito: 'Nunito', system-ui, sans-serif;
+  --font-quicksand: 'Quicksand', system-ui, sans-serif;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  font-family: var(--font-nunito);
+  @apply text-gray-800 text-base leading-relaxed antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-quicksand);
+  @apply font-bold tracking-tight;
+}
+
+h1 {
+  @apply text-3xl sm:text-4xl;
+}
+
+h2 {
+  @apply text-2xl sm:text-3xl;
+}
+
+h3 {
+  @apply text-xl sm:text-2xl;
+}
+
+p {
+  @apply mb-4;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-xl font-bold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-50;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-3 px-6 rounded-xl shadow-md 
+    hover:from-purple-700 hover:to-indigo-700 transform transition-all hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-pink-500 to-orange-500 text-white font-bold py-3 px-6 rounded-xl shadow-md 
+    hover:from-pink-600 hover:to-orange-600 transform transition-all hover:scale-105;
+  }
+  
+  .btn-accent {
+    @apply bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-md 
+    hover:bg-yellow-500 transform transition-all hover:scale-105;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md transition-all;
+  }
+  
+  .card:hover {
+    @apply shadow-xl transform -translate-y-1;
+  }
+  
+  .input {
+    @apply rounded-lg border-gray-300 bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-all;
+  }
+  
+  .select {
+    @apply rounded-lg border-gray-300 bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-all;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+  
+  button, .btn {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  select, textarea, input {
+    @apply text-base py-2;
+  }
+  
+  .material-icons {
+    font-size: 20px !important;
+  }
+}
+
+/* Custom Animation Classes */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 3s ease-in-out infinite;
+}
+
+/* Decorative Elements */
+.deco-stars::before,
+.deco-stars::after {
+  content: "✨";
+  @apply absolute text-2xl text-yellow-400 opacity-70 z-10;
+}
+
+.deco-stars::before {
+  top: 10%;
+  left: 5%;
+}
+
+.deco-stars::after {
+  bottom: 10%;
+  right: 5%;
+}
+
+/* Print styles for story printing */
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+  
+  body {
+    font-family: var(--font-nunito);
+  }
+  
+  header, footer, .no-print {
+    display: none !important;
+  }
+  
+  main {
+    @apply w-full mx-0 p-0;
+  }
+  
+  .story-content {
+    @apply text-base leading-relaxed;
+  }
+} 
